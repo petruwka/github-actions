@@ -6,19 +6,23 @@ on:
     paths: 
     - "hello-world-docker-action/**"
   workflow_dispatch:
+
 jobs:
-  Run-action:
+  run-action:
     runs-on: 
       labels: 
       - ubuntu-20.04
     steps:
-    - uses: actions/checkout@v3.3.0
-    - uses: ./hello-world-docker-action
-      id: hello-action
-      with: 
-        who-to-greet: '@from workflow file'
-    - run: |
-          echo "The time was ${{ steps.hello-action.outputs.time }}
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+      - name: Run my own container action
+        uses: ./hello-world-docker-action
+        id: hello-action
+        with: 
+          who-to-greet: '@from workflow file'
+      - name: Display output
+        run: |
+            echo "The time was ${{ steps.hello-action.outputs.time }}
           
           
       
