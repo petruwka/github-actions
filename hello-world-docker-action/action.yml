@@ -8,7 +8,7 @@ inputs:
 outputs:
   time:
     description: 'The time of hello'
-run:
+runs:
   using: 'docker'
   image: 'Dockerfile'
   args: 
